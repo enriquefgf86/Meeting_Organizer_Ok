@@ -129,7 +129,8 @@ export default new Vuex.Store({
           commit('getRegisterUserForMeets', { id: payload, fbKey: data.key })
         })
         .catch(error => {
-          console.log(error)
+          alert("Error",error)
+          // console.log(error)
           commit('settingLoaders', false)
         })
     },
@@ -146,7 +147,9 @@ export default new Vuex.Store({
           commit('getUnregisteredUserForMeets', payload)
         })
         .catch(error => {
-          console.log(error)
+          alert("Error",error)
+          // console.log(error)
+
           commit('settingLoaders', false)
         })
     },
@@ -182,7 +185,8 @@ export default new Vuex.Store({
           commit('settingLoaders', false)
         })
         .catch(error => {
-          console.log(error)
+          alert("Error",error)
+          // console.log(error)
           commit('settingLoaders', false)
         })
     },
@@ -201,7 +205,6 @@ export default new Vuex.Store({
       let key;
       firebase.database().ref('meetUps').push(newMeet)
         .then(ref => {
-          console.log(ref)
           key = ref.key
           const filename = payload.image.name
           const fileExtension = filename.slice(filename.lastIndexOf('.'))
@@ -226,7 +229,9 @@ export default new Vuex.Store({
           dispatch("loadAllMeetUps")
         })
         .catch(error => {
-          console.log(error)
+          alert("Error",error)
+          // console.log(error)
+
         })
       // commit('meetsCreator',newMeet)
     },
@@ -251,8 +256,10 @@ export default new Vuex.Store({
           commit('meetsUpdater', payload)
 
         })
-        .catch(err => {
-          console.log(err)
+        .catch(error => {
+          alert("Error",error)
+          // console.log(error)
+
           commit('settingLoaders', false)
         })
     },
@@ -270,15 +277,15 @@ export default new Vuex.Store({
               fbKeys: {}
             }
             commit('settingSignedUpUser', newUser)
-            console.log(user);
-            
           }
         )
         .catch(
           error => {
             commit('settingLoaders', false)
             commit('settingAuthUserError', error)
-            console.log(error)
+            alert("Error",error)
+            // console.log(error)
+  
           }
         )
     },
@@ -307,8 +314,8 @@ export default new Vuex.Store({
             commit('clearSettingAuthUserError')//ojo, esto se suponia iria despues del firebase 
             commit('settingSignedInUser', newUser)
             dispatch('loadAllMeetUps')
-            console.log(newUser);
-            console.log(user);
+            // console.log(newUser);
+            // console.log(user);
             
             
           }
@@ -316,7 +323,9 @@ export default new Vuex.Store({
         .catch(
           error => {
             commit('settingAuthUserError', error)
-            console.log(error)
+            alert("Error",error)
+            // console.log(error)
+  
           }
         )
     },
@@ -331,8 +340,8 @@ export default new Vuex.Store({
            registeredUserMeets.push(dataPairs[key])
            invertDataPairs[dataPairs[key]]=key
          }
-         console.log(registeredUserMeets)
-         console.log(invertDataPairs)
+        //  console.log(registeredUserMeets)
+        //  console.log(invertDataPairs)
          const myUpdatedSignedUserData={
            id:getters.getUser.id,
            registeredMeetsIds:registeredUserMeets,
@@ -341,8 +350,10 @@ export default new Vuex.Store({
          commit('settingLoaders', false)
          commit('settingSignedInUser', myUpdatedSignedUserData)
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        alert("Error",error)
+        // console.log(error)
+
         commit('settingLoaders', false)
       })  
       
